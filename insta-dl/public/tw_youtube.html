@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YouTube Downloader - MediaGet</title>
+  <meta name="description" content="Download YouTube videos and Shorts by pasting the video URL.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-mark">MG</div>
+        MediaGet
+      </div>
+      <div class="platform-tabs">
+        <button onclick="setPlatform('instagram')" class="platform-tab">Instagram</button>
+        <button onclick="setPlatform('tiktok')" class="platform-tab">TikTok</button>
+        <button onclick="setPlatform('youtube')" class="platform-tab active">YouTube</button>
+      </div>
+      <a href="/" class="header-cta">Home</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero mesh-gradient">
+      <div class="hero-inner" style="padding-bottom: 4rem;">
+        <h1>YouTube Downloader</h1>
+        <p>Paste a YouTube URL (watch or shorts) and download MP4.</p>
+      </div>
+    </section>
+
+    <section class="download-section">
+      <div class="download-form-wrapper">
+        <div class="download-form card-inset">
+          <input id="url" type="text" placeholder="https://www.youtube.com/watch?v=..." autocomplete="off">
+          <button id="dl" class="download-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </button>
+        </div>
+      </div>
+      <div id="result" class="result-card"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-mark">MG</div>
+            <span class="footer-logo-text">MediaGet</span>
+          </div>
+          <p>Free media downloader for Instagram, TikTok, and YouTube.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="/">Instagram Downloader</a></li>
+            <li><a href="/tiktok-downloader">TikTok Downloader</a></li>
+            <li><a href="/youtube-shorts-downloader">YouTube Downloader</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; MediaGet</div>
+    </div>
+  </footer>
+
+  <script>
+    function setPlatform(p) {
+      var url = document.getElementById('url');
+      if (p === 'instagram') url.placeholder = 'https://www.instagram.com/reel/...';
+      else if (p === 'tiktok') url.placeholder = 'https://www.tiktok.com/@user/video/...';
+      else if (p === 'youtube') url.placeholder = 'https://www.youtube.com/watch?v=...';
+
+      document.querySelectorAll('.platform-tab').forEach(function(t) { t.classList.remove('active'); });
+      event.target.classList.add('active');
+    }
+
+    document.getElementById('dl').addEventListener('click', async function() {
+      var urlv = document.getElementById('url').value.trim();
+      var resultDiv = document.getElementById('result');
+      if (!urlv) { resultDiv.innerHTML = '<div class="error-card">Paste a URL</div>'; return; }
+
+      resultDiv.innerHTML = '<div class="card card-inset"><div class="card-body"><div class="skeleton skeleton-thumb"></div><div style="flex:1"><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div><div class="skeleton skeleton-btn"></div></div></div></div>';
+
+      try {
+        var r = await fetch('/api/fetch', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: urlv }) });
+        var data = await r.json();
+        if (!r.ok) { resultDiv.innerHTML = '<div class="error-card">' + (data.error || 'Error') + '</div>'; return; }
+
+        var html = '';
+        for (var i = 0; i < data.mediaItems.length; i++) {
+          html += '<a href="' + data.mediaItems[i].url + '" class="btn-primary" target="_blank" download>' + (data.mediaItems[i].label || 'Download') + '</a>';
+        }
+        resultDiv.innerHTML = '<div class="card card-inset"><div class="card-body"><div class="result-info"><div class="result-title">' + (data.title || 'Media') + '</div><div class="result-actions">' + html + '</div></div></div></div>';
+      } catch(e) {
+        resultDiv.innerHTML = '<div class="error-card">Network error</div>';
+      }
+    });
+  </script>
+</body>
+</html>

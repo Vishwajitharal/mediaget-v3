@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Us - MediaGet</title>
+  <meta name="description" content="Contact MediaGet for support, DMCA takedown requests, partnership inquiries, or general questions about our Instagram media downloader service.">
+  <link rel="canonical" href="/contact" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+  <meta name="robots" content="index, follow" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-mark">MG</div>
+        MediaGet
+      </div>
+      <div class="platform-tabs">
+        <a href="/" class="platform-tab">Home</a>
+        <a href="/about-us" class="platform-tab">About</a>
+        <a href="/contact" class="platform-tab active">Contact</a>
+      </div>
+      <a href="/" class="header-cta">Back to Home</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-section">
+      <div class="page-inner">
+        <h1>Contact Us</h1>
+        <p>Have a question about our Instagram media downloader, need help with a download, or want to report a DMCA issue? We are here to help. Fill out the form below and we will get back to you as soon as possible.</p>
+
+        <form class="contact-form" onsubmit="handleContact(event)">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="e.g., DMCA Takedown Request" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Describe your issue or question in detail..." required></textarea>
+
+          <button type="submit" class="contact-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            Send Message
+          </button>
+        </form>
+
+        <div id="contact-result" style="margin-top:1.5rem;"></div>
+
+        <h2>Other Ways to Reach Us</h2>
+        <p>For DMCA takedown requests or copyright concerns regarding our Instagram video download free service, please include the exact URLs of the content in question. For technical support with our TikTok video downloader MP4 or YouTube video download without watermark features, please describe the issue in detail including the URL you are trying to download.</p>
+        <p>We aim to respond to all inquiries within 24-48 hours during business days. For urgent matters related to our free TikTok video downloader or Instagram Reel downloader, please mark your message as urgent.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-mark">MG</div>
+            <span class="footer-logo-text">MediaGet</span>
+          </div>
+          <p>The ultimate Instagram media downloader for Reels, videos, and photos. Also a TikTok video downloader and YouTube video downloader. Free, fast, and unlimited.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about-us">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Tools</h4>
+          <ul>
+            <li><a href="/instagram-reel-downloader">Instagram Reel Downloader</a></li>
+            <li><a href="/tiktok-downloader">TikTok Video Downloader</a></li>
+            <li><a href="/youtube-shorts-downloader">YouTube Video Download</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; MediaGet &mdash; Free Instagram media downloader. Not affiliated with Instagram, TikTok or YouTube.</div>
+    </div>
+  </footer>
+
+  <script>
+    function handleContact(e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var subject = document.getElementById('subject').value.trim();
+      var message = document.getElementById('message').value.trim();
+      var result = document.getElementById('contact-result');
+
+      if (!name || !email || !subject || !message) {
+        result.innerHTML = '<div class="error-card">Please fill out all fields.</div>';
+        return;
+      }
+
+      var mailto = 'mailto:support@mediaget.com?subject=' + encodeURIComponent('[MediaGet] ' + subject + ' - ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+      window.location.href = mailto;
+
+      result.innerHTML = '<div style="padding:1rem;border-radius:12px;background:var(--link-soft);color:var(--link);font-size:0.875rem;">Thank you, ' + name + '! Your message has been prepared. Please send it from your email client.</div>';
+    }
+  </script>
+</body>
+</html>
