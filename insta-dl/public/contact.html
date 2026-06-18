@@ -114,7 +114,7 @@
         return;
       }
 
-      var mailto = 'mailto:support@mediaget.com?subject=' + encodeURIComponent('[MediaGet] ' + subject + ' - ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+      var mailto = 'mailto:support@getanyvid.com?subject=' + encodeURIComponent('[MediaGet] ' + subject + ' - ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
       window.location.href = mailto;
 
       result.innerHTML = '<div style="padding:1rem;border-radius:12px;background:var(--link-soft);color:var(--link);font-size:0.875rem;">Thank you, ' + name + '! Your message has been prepared. Please send it from your email client.</div>';

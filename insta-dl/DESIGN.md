@@ -1,7 +1,7 @@
 # Instagram Reel Downloadr — DESIGN.md
 
 Project: Instagram Reel Downloadr
-Domain: instagramreeldownloadr.com
+Domain: getanyvid.com
 
 Goal
 - Build a fast, mobile-first downloader for Instagram Reels, TikTok videos and YouTube videos.

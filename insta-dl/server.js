@@ -7,6 +7,36 @@ const { spawn } = require("child_process");
 const app = express();
 app.use(cors());
 app.use(express.json());
+// Google Analytics snippet to inject into HTML pages when served
+const GA_SNIPPET = `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WDPZZMJEYR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WDPZZMJEYR');
+</script>`;
+
+// Middleware: serve HTML files with GA snippet injected before </head>
+app.use((req, res, next) => {
+  // only handle requests that likely return HTML
+  if (req.method !== 'GET') return next();
+  const acceptsHtml = req.headers.accept && req.headers.accept.indexOf('text/html') !== -1;
+  if (!(req.path === '/' || req.path.endsWith('.html') || acceptsHtml)) return next();
+
+  let relPath = req.path === '/' ? 'index.html' : req.path.replace(/^\//, '');
+  const filePath = path.join(__dirname, 'public', relPath);
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) return next();
+    // if GA already present, send as-is
+    if (data.includes('G-WDPZZMJEYR')) return res.type('html').send(data);
+    const out = data.replace(/<\/head>/i, GA_SNIPPET + '\n</head>');
+    return res.type('html').send(out);
+  });
+});
+
+// Serve static assets from public
 app.use(express.static(path.join(__dirname, "public")));
 
 const MEDIA_DIR = path.join(__dirname, "downloads");
