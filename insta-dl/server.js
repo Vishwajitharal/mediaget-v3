@@ -22,6 +22,15 @@ if (CANONICAL_DOMAIN) {
 
 app.use(cors());
 app.use(express.json());
+
+// Set correct MIME type for XML files
+app.use((req, res, next) => {
+  if (req.path.endsWith('.xml')) {
+    res.type('application/xml');
+  }
+  next();
+});
+
 app.use(express.static(path.join(__dirname, "public")));
 
 const MEDIA_DIR = path.join(__dirname, "downloads");
