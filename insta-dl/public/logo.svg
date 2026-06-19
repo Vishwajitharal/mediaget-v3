@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 220" role="img" aria-labelledby="title">
+  <title>MediaGet logo</title>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#000000" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M49 128a55 55 0 0 1 38-85 54 54 0 0 1 102 1 55 55 0 0 1 18 106H51a38 38 0 0 1-2-22Z" fill="#fff"/>
+    <path d="M80 150H51a38 38 0 0 1-2-75 55 55 0 0 1 38-32 54 54 0 0 1 51-38v44a31 31 0 0 0-31 31 39 39 0 0 0-51 37 38 38 0 0 0 24 33Z" fill="#4285f4"/>
+    <path d="M138 5a54 54 0 0 1 51 38 55 55 0 0 1 44 54h-45a31 31 0 0 0-50-24Z" fill="#ffca28"/>
+    <path d="M138 5a54 54 0 0 1 51 38 55 55 0 0 1 31 25h-55a31 31 0 0 0-27-19Z" fill="#f44336"/>
+    <path d="M188 97h45a55 55 0 0 1-55 53h-58l31-45a31 31 0 0 0 37-8Z" fill="#34a853"/>
+    <path d="M120 63h36v73h33l-51 72-51-72h33Z" fill="#34a853" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+  </g>
+</svg>

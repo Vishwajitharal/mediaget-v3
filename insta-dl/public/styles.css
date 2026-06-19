@@ -3,6 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
+  size-adjust: 100%;
   src: url('/fonts/Inter-Latin.woff2') format('woff2');
 }
 
@@ -11,6 +12,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
+  size-adjust: 100%;
   src: url('/fonts/Inter-Latin.woff2') format('woff2');
 }
 
@@ -19,6 +21,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
+  size-adjust: 100%;
   src: url('/fonts/Inter-Latin.woff2') format('woff2');
 }
 
@@ -27,6 +30,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
+  size-adjust: 100%;
   src: url('/fonts/Inter-Latin.woff2') format('woff2');
 }
 
@@ -123,9 +127,10 @@ button { cursor: pointer; font: inherit; }
 }
 .logo-mark {
   display: flex; align-items: center; justify-content: center;
-  width: 32px; height: 32px;
-  border-radius: 6px; background: var(--ink);
-  color: var(--on-ink); font-size: 0.75rem; font-weight: 600;
+  width: 38px; height: 32px;
+  background: url('/logo.svg') center / contain no-repeat;
+  color: transparent; font-size: 0; font-weight: 600;
+  overflow: hidden;
 }
 .platform-tabs {
   display: flex; align-items: center; gap: 0.25rem;
@@ -305,7 +310,7 @@ button { cursor: pointer; font: inherit; }
 .download-btn svg { width: 16px; height: 16px; }
 
 /* ─── Result Card ─── */
-.result-card { margin-top: 1.5rem; max-width: 42rem; margin-left: auto; margin-right: auto; padding: 0 1rem; }
+.result-card { margin-top: 1.5rem; max-width: 42rem; min-height: 10rem; margin-left: auto; margin-right: auto; padding: 0 1rem; }
 .result-card .card {
   padding: 1.25rem;
   border-radius: 12px;
@@ -318,6 +323,7 @@ button { cursor: pointer; font: inherit; }
 @media (min-width: 640px) { .result-card .card-body { flex-direction: row; } }
 .result-thumb {
   width: 100%; height: 112px;
+  aspect-ratio: 16 / 9;
   border-radius: 8px;
   object-fit: cover;
   background: var(--canvas-soft-2);
@@ -515,11 +521,11 @@ button { cursor: pointer; font: inherit; }
 }
 .footer-logo-mark {
   display: flex; align-items: center; justify-content: center;
-  width: 28px; height: 28px;
-  border-radius: 4px;
-  background: var(--ink);
-  color: var(--on-ink);
-  font-size: 0.75rem; font-weight: 600;
+  width: 34px; height: 28px;
+  background: url('/logo.svg') center / contain no-repeat;
+  color: transparent;
+  font-size: 0; font-weight: 600;
+  overflow: hidden;
 }
 .footer-logo-text { font-size: 0.875rem; font-weight: 500; }
 .footer-brand p {
