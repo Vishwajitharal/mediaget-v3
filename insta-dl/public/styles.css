@@ -2,7 +2,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
+  font-display: optional;
   size-adjust: 100%;
   src: url('/fonts/Inter-Latin.woff2') format('woff2');
 }
@@ -11,7 +11,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  font-display: swap;
+  font-display: optional;
   size-adjust: 100%;
   src: url('/fonts/Inter-Latin.woff2') format('woff2');
 }
@@ -20,7 +20,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-display: swap;
+  font-display: optional;
   size-adjust: 100%;
   src: url('/fonts/Inter-Latin.woff2') format('woff2');
 }
@@ -29,7 +29,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-display: swap;
+  font-display: optional;
   size-adjust: 100%;
   src: url('/fonts/Inter-Latin.woff2') format('woff2');
 }
@@ -38,7 +38,7 @@
   font-family: 'JetBrains Mono';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
+  font-display: optional;
   src: url('/fonts/JetBrainsMono-Latin.woff2') format('woff2');
 }
 
@@ -46,7 +46,7 @@
   font-family: 'JetBrains Mono';
   font-style: normal;
   font-weight: 500;
-  font-display: swap;
+  font-display: optional;
   src: url('/fonts/JetBrainsMono-Latin.woff2') format('woff2');
 }
 
@@ -255,16 +255,20 @@ button { cursor: pointer; font: inherit; }
 }
 
 /* ─── Download Form ─── */
-.download-section { position: relative; z-index: 10; margin-top: -3rem; padding-bottom: 4rem; }
-.download-form-wrapper { max-width: 42rem; margin: 0 auto; padding: 0 1rem; }
+.download-section { position: relative; z-index: 10; margin-top: -2.25rem; padding-bottom: 2.5rem; }
+.download-form-wrapper { max-width: 42rem; margin: 0 auto; padding: 0 1.25rem; }
 .download-form {
   display: flex; flex-direction: column; gap: 0.5rem;
-  padding: 0.375rem;
-  border-radius: 12px;
+  padding: 0.25rem;
+  border-radius: 10px;
   background: var(--canvas);
 }
+@media (min-width: 640px) {
+  .download-section { margin-top: -3rem; padding-bottom: 4rem; }
+  .download-form-wrapper { padding: 0 1rem; }
+}
 @media (min-width: 480px) {
-  .download-form { flex-direction: row; padding: 0.5rem; }
+  .download-form { flex-direction: row; padding: 0.5rem; border-radius: 12px; }
 }
 .download-form .platform-label {
   display: none;
@@ -281,36 +285,39 @@ button { cursor: pointer; font: inherit; }
   width: 100%;
   border: none;
   background: transparent;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.8125rem;
   outline: none;
   color: var(--ink);
 }
 @media (min-width: 480px) {
-  .download-form input { padding: 0.625rem 0.75rem; }
+  .download-form input { padding: 0.625rem 0.75rem; font-size: 0.875rem; }
 }
 .download-form input::placeholder { color: var(--mute); }
 .download-form input.error { outline: 2px solid var(--error); }
 .download-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.375rem;
   width: 100%;
-  padding: 0.625rem 1.25rem;
+  min-height: 2rem;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 7px;
   background: var(--ink);
   color: var(--on-ink);
-  font-size: 0.875rem; font-weight: 500;
+  font-size: 0.8125rem; font-weight: 500;
   transition: opacity 0.15s, transform 0.1s;
   white-space: nowrap;
 }
-@media (min-width: 480px) { .download-btn { width: auto; } }
+@media (min-width: 480px) { .download-btn { width: auto; min-height: auto; padding: 0.625rem 1.25rem; border-radius: 8px; font-size: 0.875rem; } }
 .download-btn:hover { opacity: 0.9; }
 .download-btn:active { transform: scale(0.97); }
 .download-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-.download-btn svg { width: 16px; height: 16px; }
+.download-btn svg { width: 14px; height: 14px; }
+@media (min-width: 480px) { .download-btn svg { width: 16px; height: 16px; } }
 
 /* ─── Result Card ─── */
-.result-card { margin-top: 1.5rem; max-width: 42rem; min-height: 10rem; margin-left: auto; margin-right: auto; padding: 0 1rem; }
+.result-card { margin-top: 0.75rem; max-width: 42rem; min-height: 0; margin-left: auto; margin-right: auto; padding: 0 1.25rem; }
+@media (min-width: 640px) { .result-card { margin-top: 1.5rem; min-height: 10rem; padding: 0 1rem; } }
 .result-card .card {
   padding: 1.25rem;
   border-radius: 12px;
