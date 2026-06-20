@@ -258,17 +258,24 @@ button { cursor: pointer; font: inherit; }
 .download-section { position: relative; z-index: 10; margin-top: -2.25rem; padding-bottom: 2.5rem; }
 .download-form-wrapper { max-width: 42rem; margin: 0 auto; padding: 0 1.25rem; }
 .download-form {
-  display: flex; flex-direction: column; gap: 0.5rem;
-  padding: 0.25rem;
-  border-radius: 10px;
+  display: flex; flex-direction: row; align-items: center; gap: 0.5rem;
+  min-height: 60px;
+  padding: 0.5rem 0.625rem 0.5rem 1rem;
+  border-radius: 14px;
   background: var(--canvas);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(15, 23, 42, 0.08);
 }
 @media (min-width: 640px) {
   .download-section { margin-top: -3rem; padding-bottom: 4rem; }
   .download-form-wrapper { padding: 0 1rem; }
 }
 @media (min-width: 480px) {
-  .download-form { flex-direction: row; padding: 0.5rem; border-radius: 12px; }
+  .download-form {
+    min-height: auto;
+    padding: 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0px 1px 1px rgba(0,0,0,0.02), 0px 2px 2px rgba(0,0,0,0.04);
+  }
 }
 .download-form .platform-label {
   display: none;
@@ -281,12 +288,13 @@ button { cursor: pointer; font: inherit; }
 }
 @media (min-width: 640px) { .download-form .platform-label { display: flex; } }
 .download-form input {
+  min-width: 0;
   flex: 1;
   width: 100%;
   border: none;
   background: transparent;
-  padding: 0.375rem 0.625rem;
-  font-size: 0.8125rem;
+  padding: 0.625rem 0;
+  font-size: 0.875rem;
   outline: none;
   color: var(--ink);
 }
@@ -297,14 +305,16 @@ button { cursor: pointer; font: inherit; }
 .download-form input.error { outline: 2px solid var(--error); }
 .download-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.375rem;
-  width: 100%;
-  min-height: 2rem;
-  padding: 0.5rem 1rem;
+  flex: 0 0 auto;
+  width: 40px;
+  min-height: 40px;
+  padding: 0;
   border: none;
-  border-radius: 7px;
+  border-radius: 8px;
   background: var(--ink);
   color: var(--on-ink);
-  font-size: 0.8125rem; font-weight: 500;
+  font-size: 0;
+  font-weight: 500;
   transition: opacity 0.15s, transform 0.1s;
   white-space: nowrap;
 }
