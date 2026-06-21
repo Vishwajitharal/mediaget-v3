@@ -23,6 +23,16 @@ if (CANONICAL_DOMAIN) {
 app.use(cors());
 app.use(express.json());
 
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.sendFile(path.join(__dirname, "public", "robots.txt"));
+});
+
+app.get("/sitemap.xml", (req, res) => {
+  res.type("application/xml");
+  res.sendFile(path.join(__dirname, "public", "sitemap.xml"));
+});
+
 // Set correct MIME type for XML files
 app.use((req, res, next) => {
   if (req.path.endsWith('.xml')) {
